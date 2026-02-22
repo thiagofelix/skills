@@ -188,6 +188,22 @@ Grep: pattern="export.*MyType" path="~/.effect-smol/packages/effect/src" glob="*
 For unstable modules, look under `~/.effect-smol/packages/effect/src/unstable/`.
 For migration guidance, read `~/.effect-smol/MIGRATION.md` or `~/.effect-smol/packages/effect/SCHEMA.md`.
 
+## Code Style Enforcement
+
+The Effect docs define official code style guidelines. When this skill is active, treat the following as **hard rules**, not suggestions:
+
+- **Use `runMain` for entrypoints**
+  - When generating code that runs an Effect program as the main application on Node, always use `NodeRuntime.runMain(program)` from `@effect/platform-node`.
+  - Do not show `Effect.runPromise(program)` as the primary way to run a long-lived app or server in `main` on Node. If the user does this, explicitly call it out and show a `NodeRuntime.runMain` version.
+  - If the code clearly targets Bun or Browser, prefer the corresponding `*Runtime.runMain` helper when demonstrating the main entrypoint.
+
+- **Avoid tacit / point-free usage**
+  - Do not generate tacit style such as `Effect.map(fn)` / `Effect.flatMap(fn)` (where the function is the first argument) or `flow` from `effect/Function`.
+  - Prefer explicit lambdas instead, for example `Effect.map((x) => fn(x))`, to preserve type inference and clearer stack traces.
+  - When user code uses tacit style or `flow`, proactively mention that Effect discourages this pattern and provide an explicit-style rewrite.
+
+Always ensure generated examples and suggested rewrites follow these rules. When following the guideline would materially change behavior, explain the trade-offs and show a guideline-compliant alternative.
+
 ## What to Avoid
 
 | Pattern | Problem | Instead |
