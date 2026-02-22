@@ -7,6 +7,7 @@ A collection of skills for AI agents (Claude Code compatible). Each skill gives 
 | Skill | Description |
 |-------|-------------|
 | [`amazon-sp-api`](./amazon-sp-api/) | Expert guidance for building with the Amazon Selling Partner API — orders, inventory, listings, fulfillment, reports, finances, and all 51+ SP-API domains |
+| [`effect-ts-v4`](./effect-ts-v4/) | Expert guidance for building with Effect-TS v4 — typed errors, dependency injection with layers, Schema, Stream, and the new consolidated package structure |
 
 ## Usage
 
